@@ -136,7 +136,10 @@ public class GetPlaceHoldersDev : MonoBehaviour
     //NGI addition
     public void GetOrbitContent()
     {
-        orbitAPI.LoadItemsFromServer();
+        if (acapi.useOrbitContent)
+        {
+            orbitAPI.LoadItemsFromServer();
+        }
     }
 
 
@@ -174,7 +177,7 @@ public class GetPlaceHoldersDev : MonoBehaviour
 
                     for (int j = 0; j < stickers.Length; j++)
                     {
-                        //skips current spatial item if its to far awey
+                        //skips current spatial item if its to far away
                         if (stickers[j].spatialServiceRecord.isToFarAway)
                         {
                             continue;
@@ -258,7 +261,7 @@ public class GetPlaceHoldersDev : MonoBehaviour
                                 if (string.Equals(stickers[j].spatialServiceRecord.content.refs[0]["contentType"], "assetbundle"))  //(stickers[j].spatialServiceRecord.content.refs[0].ContainsKey("assetbundle"))
                                 {
                                     assetbundleName = stickers[j].spatialServiceRecord.content.title; //stickers[j].spatialServiceRecord.content.refs[0]["assetbundle"];
-                                    Debug.Log("Assetbundle name is: " +  assetbundleName);
+                                    Debug.Log("Assetbundle name is: " + assetbundleName);
                                     model.GetComponent<AssetLoaderNGI>().ABName = assetbundleName.ToLower();
                                     model.GetComponent<AssetLoaderNGI>().customUrl = assetbundlUrl.ToLower();
                                 }
