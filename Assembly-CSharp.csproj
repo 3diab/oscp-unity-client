@@ -57,14 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ACViewer-SDK\AugmentedCity\Scripts\Mover.cs" />
-    <Compile Include="Assets\M2MqttUnity\M2Mqtt\Messages\MqttMsgConnect.cs" />
     <Compile Include="Assets\ACViewer-SDK\AugmentedCity\Scripts\CoordTest.cs" />
+    <Compile Include="Assets\M2MqttUnity\M2Mqtt\Messages\MqttMsgConnect.cs" />
     <Compile Include="Assets\M2MqttUnity\M2Mqtt\Session\MqttSession.cs" />
     <Compile Include="Assets\M2MqttUnity\M2Mqtt\WinRT\Fx.cs" />
     <Compile Include="Assets\NGI\Scripts\InDevelopment\ARInteractionManager.cs" />
     <Compile Include="Assets\ACViewer-SDK\AugmentedCity\Scripts\DemoSceneScripts\SelfDeactivator.cs" />
     <Compile Include="Assets\ACViewer-SDK\AugmentedCity\Scripts\ABLoaders\ABBuilder.cs" />
     <Compile Include="Assets\NGI\Scripts\InDevelopment\PositionToGeodetics.cs" />
+    <Compile Include="Assets\NGI\Scripts\InDevelopment\SSDManager.cs" />
     <Compile Include="Assets\M2MqttUnity\M2Mqtt\Messages\MqttMsgPingResp.cs" />
     <Compile Include="Assets\M2MqttUnity\M2Mqtt\Session\MqttClientSession.cs" />
     <Compile Include="Assets\M2MqttUnity\M2Mqtt\Messages\MqttMsgPuback.cs" />
@@ -844,9 +845,6 @@
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.XR.ARCore.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARCore.Editor.dll</HintPath>
     </Reference>
@@ -879,9 +877,6 @@
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Monetization">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Monetization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARCore">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARCore.dll</HintPath>
@@ -972,9 +967,6 @@
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARFoundation.dll</HintPath>

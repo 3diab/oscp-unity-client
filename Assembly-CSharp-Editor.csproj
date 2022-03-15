@@ -980,9 +980,6 @@
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.XR.ARCore.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARCore.Editor.dll</HintPath>
     </Reference>
@@ -1015,9 +1012,6 @@
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Monetization">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Monetization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARCore">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARCore.dll</HintPath>
@@ -1108,9 +1102,6 @@
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARFoundation.dll</HintPath>

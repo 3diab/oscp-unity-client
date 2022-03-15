@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 
 public delegate string HandleLoginResponse(string urlResponse);
 
-public class OAuth2Authentication : MonoBehaviour
+public class OAuth2Authentication : Singleton<OAuth2Authentication>
 {
    
     // client configuration

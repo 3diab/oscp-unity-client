@@ -171,7 +171,8 @@ public class ACityAPIDev : MonoBehaviour
     {
         spatialRecordManager = FindObjectOfType<SpatialRecordManager>();
 
-        PlayerPrefs.DeleteAll(); // NOTE: PlayerPrefs remain stored across sessions, which we don't want.
+        PlayerPrefs.DeleteKey("ApiUrl"); //PlayerPrefs.DeleteAll(); NOTE: PlayerPrefs remain stored across sessions, which we don't want.
+        PlayerPrefs.DeleteKey("LocLoaded"); 
         //UnityWebRequest.ClearCookieCache(); //FixMe: aco3d has it?  // TODO: ask AC about this line.
         globalTimer = -1;
         ARCamera = Camera.main.gameObject;
