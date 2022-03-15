@@ -313,7 +313,7 @@ public class ACityAPIDev : MonoBehaviour
 
             // At this point, we could process the image, pass it to a computer vision algorithm, etc.
             // In this example, we'll just apply it to a texture to visualize it.
-
+            
             // We've got the data; let's put it into a texture so we can visualize it.
             Texture2D m_Texture = new Texture2D(
                 conversionParams.outputDimensions.x,
@@ -324,7 +324,7 @@ public class ACityAPIDev : MonoBehaviour
             m_Texture.LoadRawTextureData(buffer);
             m_Texture.Apply();
             buffer.Dispose();
-
+            
             byte[] bb = m_Texture.EncodeToJPG(100);
             Destroy(m_Texture);
             return bb;
@@ -1310,7 +1310,7 @@ public class ACityAPIDev : MonoBehaviour
     }
 
 
-    public void prepareSession(Action<bool, string> getServerAnswer)
+    public IEnumerator prepareSession(Action<bool, string> getServerAnswer)
     {
         if (!editorTestMode)
         {
@@ -1322,15 +1322,18 @@ public class ACityAPIDev : MonoBehaviour
             Input.location.Start();
             // TODO: wait here until it really starts
 
+            yield return new WaitUntil(() => Input.location.status == LocationServiceStatus.Running);
+
             StartCoroutine(prepareC(Input.location.lastData.longitude, Input.location.lastData.latitude, getServerAnswer));
         }
     }
 
     IEnumerator prepareC(float longitude, float latitude, Action<bool, string> getServerAnswer)
     {
+        Debug.Log(longitude + latitude);
         Debug.Log("prepareC...");
         // Example: https://developer.augmented.city:5000/api/localizer/prepare?lat=59.907458f&lon=30.298400f
-        Debug.Log(apiURL + "/api/localizer/prepare?lat=" + latitude + "f&lon=" + longitude + "f");
+        Debug.Log(apiURL + "/api/v2/localizer/prepare?lat=" + latitude + "f&lon=" + longitude + "f");
         var w = UnityWebRequest.Get(apiURL + "/api/localizer/prepare?lat=" + latitude + "f&lon=" + longitude + "f");
         w.SetRequestHeader("Accept-Encoding", "gzip, deflate, br");
         w.SetRequestHeader("Accept", "application/vnd.myplace.v2+json");

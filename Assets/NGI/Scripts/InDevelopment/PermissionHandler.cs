@@ -20,11 +20,13 @@ public class PermissionHandler : MonoBehaviour
     private IEnumerator WaitForPermission()
     {
 
+#if PLATFORM_ANDROID || UNITY_IOS
         while (!Permission.HasUserAuthorizedPermission(Permission.FineLocation) || !Permission.HasUserAuthorizedPermission(Permission.Camera))
         {
-#if PLATFORM_ANDROID || UNITY_IOS
+
             if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
             {
+                //Simple sulution to stop coruitne from executinng many permission requests.
                 if (Application.isFocused)
                 {
                     Permission.RequestUserPermission(Permission.FineLocation);
@@ -38,10 +40,11 @@ public class PermissionHandler : MonoBehaviour
                 }
 
             }
-#endif
+
             yield return null;
 
         }
+#endif
 
         SceneManager.LoadSceneAsync("AugCityToNGI_Dev_Interaction");
 

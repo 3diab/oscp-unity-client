@@ -72,7 +72,7 @@ public class GetPlaceHoldersDev : MonoBehaviour
         relocationCompleted = true;
         toShowStickers = true;
         uim = this.GetComponent<UIManager>();
-        acapi.prepareSession(preparationCheck); //FixMe: in aco3d it's off
+        StartCoroutine(acapi.prepareSession(preparationCheck)); //FixMe: in aco3d it's off
     }
 
     public void setTimeForRelocation(float tfr)
