@@ -52,7 +52,6 @@
       },
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
     "com.unity.collab-proxy": {
       "version": "1.15.15",
       "depth": 0,
@@ -62,8 +61,6 @@
       },
       "url": "https://packages.unity.com"
     },
-=======
->>>>>>> soeroesg
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
       "depth": 1,
@@ -136,7 +133,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
     "com.unity.services.core": {
       "version": "1.0.1",
       "depth": 1,
@@ -146,8 +142,6 @@
       },
       "url": "https://packages.unity.com"
     },
-=======
->>>>>>> soeroesg
     "com.unity.subsystemregistration": {
       "version": "1.1.0",
       "depth": 1,

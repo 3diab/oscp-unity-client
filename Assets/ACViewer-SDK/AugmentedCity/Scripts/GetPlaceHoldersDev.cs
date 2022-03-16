@@ -145,15 +145,6 @@ public class GetPlaceHoldersDev : MonoBehaviour
 
     void showPlaceHolders(string id, Transform zeroP, ACityAPIDev.StickerInfo[] stickers)
     {
-
-        //TODO:Remove need for id paramater
-        //If id is null objects is not created
-        //Added this check so objects dosent get created if there are no stickers
-        if (stickers != null)
-        {
-            id = "1";
-        }
-
         if (id != null)
         {
             /*Debug.Log("zeroPpos = " + zeroP.position.x + "    " + zeroP.position.y + "    " + zeroP.position.z);

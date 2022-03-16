@@ -19,12 +19,8 @@ public class PermissionHandler : MonoBehaviour
 
     private IEnumerator WaitForPermission()
     {
-<<<<<<< HEAD
 
 #if PLATFORM_ANDROID || UNITY_IOS
-=======
-        //TODO: Change while loop to a list of permissions, ask the user about each specific permission and remember users choice.
->>>>>>> soeroesg
         while (!Permission.HasUserAuthorizedPermission(Permission.FineLocation) || !Permission.HasUserAuthorizedPermission(Permission.Camera))
         {
 
@@ -62,7 +58,7 @@ public class PermissionHandler : MonoBehaviour
 
     private void PermissionCallbacks_PermissionGranted(string obj)
     {
-        Debug.Log("Permission was granted: " + obj);
+        Debug.Log("Permission is was granted: " + obj);
         // throw new NotImplementedException();
     }
 
