@@ -1394,10 +1394,18 @@ public class ACityAPIDev : MonoBehaviour
     }
 
 
-    IEnumerator Locate(Action<float, float, float, string, Action<string, Transform, StickerInfo[]>> onGpsLocationDetermined)
+    //IEnumerator Locate(Action<float, float, float, string, Action<string, Transform, StickerInfo[]>> onGpsLocationUpdated)
+    IEnumerator Locate(Action onGpsLocationUpdatedCallback = null)
     {
         Debug.Log("Started Locate GPS");
-        uim.statusDebug("Locating GPS");
+        if (uim == null)
+        {
+            Debug.LogError("uim is null at this point!"); // TODO: this is likely to happen when this is called during Start()
+        }
+        else
+        {
+            uim.statusDebug("Locating GPS");
+        }
 
         localizationStatus = LocalizationStatus.GetGPSData;
         // First, check if user has location service enabled
@@ -1435,22 +1443,19 @@ public class ACityAPIDev : MonoBehaviour
         else
         {
             // Access granted and location value could be retrieved
-            Debug.Log("GPS Location: " + " lat: " + Input.location.lastData.latitude
-                                       + " lon: " + Input.location.lastData.longitude
-                                       + " alt: " + Input.location.lastData.altitude
-                                       + " hAccuracy: " + Input.location.lastData.horizontalAccuracy
-                                       + " timestamp: " + Input.location.lastData.timestamp);
+            updateMyGpsLocation(Input.location.lastData);
+            // TODO: should we set a value for localizationStatus here?
 
-            lastGpsLocation = Input.location.lastData;
-            hasGpsLocation = true;
-            uim.statusDebug("Located GPS");
-
-            // callback
-            onGpsLocationDetermined(lastGpsLocation.longitude, lastGpsLocation.latitude, lastGpsLocation.horizontalAccuracy, null, null);
+            if (onGpsLocationUpdatedCallback != null)
+            {
+                Debug.Log("Locate invoking callback...");
+                onGpsLocationUpdatedCallback.Invoke();
+            }
         }
 
         // Stop service if there is no need to query location updates continuously
         //Input.location.Stop();
+        Debug.Log("Finished Locate GPS");
     }
 
     public LocalizationStatus getLocalizationStatus() { return localizationStatus; }
