@@ -153,15 +153,30 @@ public class ACityAPIDev : MonoBehaviour
 
     GameObject ARCamera;
     ARCameraManager m_CameraManager;
-    bool startedLocalization;
+    bool startedLocalization; // TODO: isn't this redundant with localizationStatus? It seems unused anyway.
     bool configurationSetted;
+    LocalizationStatus localizationStatus = LocalizationStatus.NotStarted;
+
     bool hasGpsLocation = false;
-    LocationInfo lastGpsLocation;
+    // This is a modifiable version of UnityEngine.LocationInfo
+    struct MyLocationInfo
+    {
+        public float latitude { get; set; }
+        public float longitude { get; set; }
+        public float altitude { get; set; }
+        public float horizontalAccuracy { get; set; }
+        public float verticalAccuracy { get; set; }
+        public double timestamp { get; set; }
+    }
+    MyLocationInfo lastGpsLocation;
+    const int kH3Resolution = 8;
+    H3Lib.H3Index lastH3Index = new H3Lib.H3Index(0);
+    UInt64 geoposeRequestId = 0;
 
     Action<string, Transform, StickerInfo[]> getStickersAction;
     List<RecoInfo> recoList = new List<RecoInfo>();
 
-    LocalizationStatus localizationStatus = LocalizationStatus.NotStarted;
+
     UIManager uim;
 
     SpatialRecordManager spatialRecordManager;
@@ -1102,6 +1117,31 @@ public class ACityAPIDev : MonoBehaviour
             //firstLocalization(latitude, longitude, hdop, null, null);  // TODO: here the lat and lon were swapped!!!
             firstLocalization(lastGpsLocation.longitude, lastGpsLocation.latitude, lastGpsLocation.horizontalAccuracy, null, null);
         }
+    }
+
+    // This method might be called publicly, for example from a Debug localizer or a separate GpsLocationService
+    public void updateMyGpsLocation(LocationInfo locationInfo)
+    {
+        lastGpsLocation.altitude = locationInfo.altitude;
+        lastGpsLocation.horizontalAccuracy = locationInfo.horizontalAccuracy;
+        lastGpsLocation.latitude = locationInfo.latitude;
+        lastGpsLocation.longitude = locationInfo.longitude;
+        lastGpsLocation.timestamp = locationInfo.timestamp;
+        lastGpsLocation.verticalAccuracy = locationInfo.verticalAccuracy;
+        hasGpsLocation = true;
+        uim.statusDebug("Located GPS");
+        Debug.Log("Updated GPS Location: "
+            + " lat: " + lastGpsLocation.latitude
+            + " lon: " + lastGpsLocation.longitude
+            + " alt: " + lastGpsLocation.altitude
+            + " hAccuracy: " + lastGpsLocation.horizontalAccuracy
+            + " timestamp: " + lastGpsLocation.timestamp);
+
+        decimal radLat = H3Lib.Api.DegsToRads((decimal)lastGpsLocation.latitude);
+        decimal radLon = H3Lib.Api.DegsToRads((decimal)lastGpsLocation.longitude);
+        H3Lib.GeoCoord geoCoord = new H3Lib.GeoCoord(radLat, radLon);
+        lastH3Index = H3Lib.Extensions.GeoCoordExtensions.ToH3Index(geoCoord, kH3Resolution);
+        Debug.Log("  H3 index (level " + kH3Resolution + "): " + lastH3Index.ToString());
     }
 
     public void firstLocalization(float longitude, float latitude, float hdop, string path, Action<string, Transform, StickerInfo[]> getStickers)
