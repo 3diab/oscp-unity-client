@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class SCRItemTag : MonoBehaviour
 {
-
     public string itemID;
-
 }

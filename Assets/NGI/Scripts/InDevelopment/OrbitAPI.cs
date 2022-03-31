@@ -1,7 +1,5 @@
 using Newtonsoft.Json;
-using NGI.Api;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;

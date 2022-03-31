@@ -1,7 +1,5 @@
 using GLTFast;
 using GLTFast.Loading;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;

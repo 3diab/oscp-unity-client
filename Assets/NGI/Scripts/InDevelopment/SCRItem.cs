@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NGI.Api
-{
     //SCR = spatial content record
     public class SCRItem
     {
@@ -54,9 +52,3 @@ namespace NGI.Api
         public IList<string> keywords;
 
     }
-
-    
-
-
-
-}

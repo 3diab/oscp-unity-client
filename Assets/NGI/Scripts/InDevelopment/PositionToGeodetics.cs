@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//TODO: Make this work with creating object at selected point in the world. Atm this is non functional
 public class PositionToGeodetics : MonoBehaviour
 {
 
