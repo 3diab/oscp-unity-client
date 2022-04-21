@@ -127,7 +127,6 @@ public class ACityAPIDev : MonoBehaviour
     public string defaultApiUrl = "https://developer.augmented.city";
 
     public bool editorTestMode;
-    public string ServerAPI = "https://developer.augmented.city";
     public GameObject devButton;
 
     public TextAsset bb; // TODO: this was some fake image in base64 format in the past? It is missing now.
@@ -194,7 +193,7 @@ public class ACityAPIDev : MonoBehaviour
             spatialContentManager = FindObjectOfType<SCRManager>();
         }
 
-       // defaultApiUrl = OSCPDataHolder.Instance.GeoPoseServieURL;
+        defaultApiUrl = OSCPDataHolder.Instance.GeoPoseServieURL;
 
         //PlayerPrefs.DeleteAll(); // NOTE: PlayerPrefs remain stored across sessions, which we don't want.
         // TODO: But it seems the camera settings must be stored across sessions, otherwise the app cannot retrieve images from the ARCore camera.
@@ -1416,7 +1415,15 @@ public class ACityAPIDev : MonoBehaviour
         // WARNING: there has been some changes in the URL ending over the past year:
         //string finalUrl = baseURL + "/scrs/geopose_objs_local";  // this returns camera pose and all objects in the neighborhood
         //string finalUrl = baseURL + "/scrs/geopose_objs"; // this is obsolete and should never be used
-        string finalUrl = baseURL + "/scrs/geopose"; // this returns camera pose only
+        string finalUrl;
+        if (!baseURL.Contains("/scrs/geopose"))
+        {
+            finalUrl = baseURL + "/scrs/geopose"; // this returns camera pose only
+        }
+        else
+        {
+            finalUrl = baseURL;
+        }
         Debug.Log("finalUrl: " + finalUrl);
 
         // Debug.Log("Uploading Screenshot started...");
