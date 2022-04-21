@@ -704,15 +704,15 @@ public class ACityAPIDev : MonoBehaviour
                     }
                     else
                     {
-                        camLat = jsonParse["geopose"]["pose"]["latitude"].AsDouble;
-                        camLon = jsonParse["geopose"]["pose"]["longitude"].AsDouble;
-                        camHei = jsonParse["geopose"]["pose"]["ellipsoidHeight"].AsDouble;
+                        camLat = jsonParse["pose"]["latitude"].AsDouble;
+                        camLon = jsonParse["pose"]["longitude"].AsDouble;
+                        camHei = jsonParse["pose"]["ellipsoidHeight"].AsDouble;
                         Debug.Log("Cam GEO_v01 - lat = " + camLat + ", lon = " + camLon + ", ellH = " + camHei);
 
-                        ox = jsonParse["geopose"]["pose"]["quaternion"]["x"].AsFloat;
-                        oy = jsonParse["geopose"]["pose"]["quaternion"]["y"].AsFloat;
-                        oz = jsonParse["geopose"]["pose"]["quaternion"]["z"].AsFloat;
-                        ow = jsonParse["geopose"]["pose"]["quaternion"]["w"].AsFloat;
+                        ox = jsonParse["pose"]["quaternion"]["x"].AsFloat;
+                        oy = jsonParse["pose"]["quaternion"]["y"].AsFloat;
+                        oz = jsonParse["pose"]["quaternion"]["z"].AsFloat;
+                        ow = jsonParse["pose"]["quaternion"]["w"].AsFloat;
                     }
 
                     if (currentRi == null)
@@ -834,6 +834,7 @@ public class ACityAPIDev : MonoBehaviour
                                 oz = spatialContentManager.spatialServiceRecord[j].content.geopose.quaternion["z"];
                                 ow = spatialContentManager.spatialServiceRecord[j].content.geopose.quaternion["w"];
 
+                                
                                 //TODO: Remove this check from client, server should only return visible objects
                                 //I think this means within +- 100M distance
                                 double latMin = camLat - 0.001;
@@ -844,8 +845,7 @@ public class ACityAPIDev : MonoBehaviour
                                 if (!(tlat > latMin && tlat < latMax && tlon > lonMin && tlon < lonMax))
                                 {
                                     spatialContentManager.spatialServiceRecord[j].isToFarAway = true;
-                                }
-
+                                }                              
 
                                 //Debug.Log("scr.ecef.quat = oxo:" + ox + "--" + oy + "--" + oz + "--" + ow);
 
@@ -1207,7 +1207,7 @@ public class ACityAPIDev : MonoBehaviour
     {
         if (!configurationSetted)
         {
-            SetCameraConfiguration();
+            //SetCameraConfiguration();
         }
 
         getStickersAction = getStickers;
